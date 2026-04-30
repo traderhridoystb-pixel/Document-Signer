@@ -507,7 +507,8 @@ enum SignatureImageProcessor {
             let b = Double(pixelData[offset + 2])
             totalBrightness += (r + g + b) / 3.0
         }
-        let avgBrightness = totalBrightness / Double(sampleCount / step + 1)
+        let actualSampleCount = ((width * height) + step - 1) / step
+        let avgBrightness = totalBrightness / Double(actualSampleCount)
 
         // Threshold: pixels brighter than this are considered background
         let threshold: Double = min(max(avgBrightness - 30, 180), 230)
@@ -529,6 +530,10 @@ enum SignatureImageProcessor {
                 // Keep ink pixels, boost contrast
                 let factor = min(1.0, (threshold - brightness) / threshold)
                 let alpha = UInt8(min(255, factor * 255 * 1.5))
+                let alphaFraction = Double(alpha) / 255.0
+                pixelData[offset] = UInt8(min(Double(alpha), Double(pixelData[offset]) * alphaFraction))
+                pixelData[offset + 1] = UInt8(min(Double(alpha), Double(pixelData[offset + 1]) * alphaFraction))
+                pixelData[offset + 2] = UInt8(min(Double(alpha), Double(pixelData[offset + 2]) * alphaFraction))
                 pixelData[offset + 3] = alpha
             }
         }
