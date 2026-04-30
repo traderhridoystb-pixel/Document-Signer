@@ -65,9 +65,9 @@ struct RevenueCatPaywallContainer: View {
                         Button(action: { onDismiss() }) {
                             Image(systemName: "xmark")
                                 .font(.system(size: 14, weight: .bold))
-                                .foregroundColor(.white.opacity(0.7))
+                                .foregroundColor(SignerColors.textSecondary)
                                 .frame(width: 32, height: 32)
-                                .background(Color.white.opacity(0.15))
+                                .background(Color(.systemGray5))
                                 .clipShape(Circle())
                         }
                         .padding(.trailing, 20)
@@ -266,12 +266,12 @@ struct CustomPaywallView: View {
                     Image(systemName: selectedPlan == .yearly ? "checkmark.circle.fill" : "circle")
                         .font(.system(size: 18))
                         .foregroundColor(selectedPlan == .yearly ? accentCyan : .white.opacity(0.3))
-                    Text("BEST VALUE")
+                    Text(localization.localized(.bestValue).uppercased())
                         .font(.system(size: 10, weight: .bold))
                         .foregroundColor(.white.opacity(0.6))
                 }
 
-                Text("1 Year Package")
+                Text(localization.localized(.yearlyPlan))
                     .font(.system(size: isCompact ? 14 : 15, weight: .bold))
                     .foregroundColor(.white)
                     .lineLimit(1)
@@ -329,7 +329,7 @@ struct CustomPaywallView: View {
         }) {
             VStack(spacing: isCompact ? 6 : 8) {
                 // Badge
-                Text("POPULAR")
+                Text(localization.localized(.popular).uppercased())
                     .font(.system(size: 11, weight: .heavy))
                     .foregroundColor(.white)
                     .padding(.horizontal, 12)
@@ -349,12 +349,12 @@ struct CustomPaywallView: View {
                     Image(systemName: selectedPlan == .lifetime ? "checkmark.circle.fill" : "circle")
                         .font(.system(size: 18))
                         .foregroundColor(selectedPlan == .lifetime ? accentCyan : .white.opacity(0.3))
-                    Text("LIFETIME")
+                    Text(localization.localized(.lifetimePlan).uppercased())
                         .font(.system(size: 10, weight: .bold))
                         .foregroundColor(.white.opacity(0.6))
                 }
 
-                Text("Lifetime Access")
+                Text(localization.localized(.lifetimePlan))
                     .font(.system(size: isCompact ? 14 : 15, weight: .bold))
                     .foregroundColor(.white)
                     .lineLimit(1)
@@ -368,7 +368,7 @@ struct CustomPaywallView: View {
                         .font(.system(size: 10, weight: .medium))
                         .foregroundColor(.white.opacity(0.4))
 
-                    Text("Unlock Lifetime Access")
+                    Text(localization.localized(.unlockLifetimeAccess))
                         .font(.system(size: 10, weight: .bold))
                         .foregroundColor(accentOrange)
                 } else {
@@ -402,8 +402,8 @@ struct CustomPaywallView: View {
             }) {
                 HStack(spacing: 8) {
                     Text(selectedPlan == .yearly
-                         ? "START \(AppConstants.freeTrialDays)-DAY FREE TRIAL"
-                         : "UNLOCK LIFETIME ACCESS")
+                         ? localization.localized(.startFreeTrial).uppercased()
+                         : localization.localized(.unlockLifetimeAccess).uppercased())
                         .font(.system(size: isCompact ? 15 : 16, weight: .heavy))
                     Image(systemName: "arrow.right")
                         .font(.system(size: 14, weight: .heavy))
