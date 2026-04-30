@@ -297,7 +297,7 @@ struct CustomPaywallView: View {
                     HStack(spacing: 4) {
                         Image(systemName: "star.fill")
                             .font(.system(size: 9))
-                        Text("Start \(AppConstants.freeTrialDays)-Day Free Trial")
+                        Text(localization.localized(.startFreeTrial))
                             .font(.system(size: 10, weight: .bold))
                     }
                     .foregroundColor(accentOrange)
@@ -420,12 +420,12 @@ struct CustomPaywallView: View {
             .disabled(isPurchasing)
 
             if selectedPlan == .yearly {
-                Text("\(AppConstants.freeTrialDays)-day free trial, then \(revenueCat.yearlyPackage?.storeProduct.localizedPriceString ?? "") yearly \u{2022} Cancel anytime")
+                Text("\(localization.localized(.freeTrialDescription)), \(revenueCat.yearlyPackage?.storeProduct.localizedPriceString ?? "")\(localization.localized(.perYear)) \u{2022} \(localization.localized(.cancelAnytime))")
                     .font(.system(size: 10, weight: .medium))
                     .foregroundColor(.white.opacity(0.4))
                     .multilineTextAlignment(.center)
             } else {
-                Text("One-time purchase. Lifetime access on this Apple ID.")
+                Text(localization.localized(.lifetimeAccessAppleID))
                     .font(.system(size: 10, weight: .medium))
                     .foregroundColor(.white.opacity(0.4))
                     .multilineTextAlignment(.center)
