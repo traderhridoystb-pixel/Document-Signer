@@ -1,5 +1,6 @@
 import Foundation
 import RevenueCat
+import StoreKit
 import SwiftUI
 
 // MARK: - RevenueCat Configuration
@@ -82,7 +83,7 @@ final class RevenueCatManager {
 
         Purchases.configure(
             with: .builder(withAPIKey: RevenueCatConfig.apiKey)
-                .with(usesStoreKit2IfAvailable: true)
+                .with(storeKitVersion: .storeKit2)
                 .build()
         )
 
