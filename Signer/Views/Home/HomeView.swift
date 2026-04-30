@@ -197,7 +197,7 @@ struct HomeView: View {
                         .fontWeight(.semibold)
                         .foregroundColor(SignerColors.textPrimary)
 
-                    Text("\(documentManager.signedDocumentCount)/\(AppConstants.freeDocumentSignLimit) free documents used")
+                    Text("Unlock Save, Export & Share")
                         .font(SignerTypography.caption1)
                         .foregroundColor(SignerColors.textSecondary)
                 }
