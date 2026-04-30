@@ -465,11 +465,13 @@ struct CustomPaywallView: View {
                     .foregroundColor(.white.opacity(0.5))
             }
 
-            Text("Auto-renews unless cancelled at least 24 hours before period ends. Cancel in Settings.")
-                .font(.system(size: 9, weight: .regular))
-                .foregroundColor(.white.opacity(0.3))
-                .multilineTextAlignment(.center)
-                .padding(.horizontal, 16)
+            if selectedPlan == .yearly {
+                Text("Auto-renews unless cancelled at least 24 hours before period ends. Cancel in Settings.")
+                    .font(.system(size: 9, weight: .regular))
+                    .foregroundColor(.white.opacity(0.3))
+                    .multilineTextAlignment(.center)
+                    .padding(.horizontal, 16)
+            }
         }
         .padding(.bottom, 8)
     }
