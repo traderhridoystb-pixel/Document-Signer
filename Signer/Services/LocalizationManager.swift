@@ -69,6 +69,7 @@ enum LocalizedStringKey: String {
     case yearlyPlan
     case lifetimePlan
     case perMonth
+    case perYear
     case freeTrial
     case freeTrialDescription
     case startFreeTrial
@@ -153,6 +154,7 @@ private let localizedStrings: [SupportedLanguage: [LocalizedStringKey: String]] 
         .yearlyPlan: "Yearly",
         .lifetimePlan: "Lifetime",
         .perMonth: "/month",
+        .perYear: "/year",
         .freeTrial: "Free Trial",
         .freeTrialDescription: "3-day free trial, then",
         .startFreeTrial: "Start Free Trial",
@@ -226,6 +228,8 @@ private let localizedStrings: [SupportedLanguage: [LocalizedStringKey: String]] 
         .startFreeTrial: "\u{09AB}\u{09CD}\u{09B0}\u{09BF} \u{099F}\u{09CD}\u{09B0}\u{09BE}\u{09AF}\u{09BC}\u{09BE}\u{09B2} \u{09B6}\u{09C1}\u{09B0}\u{09C1} \u{0995}\u{09B0}\u{09C1}\u{09A8}",
         .popular: "\u{099C}\u{09A8}\u{09AA}\u{09CD}\u{09B0}\u{09BF}\u{09AF}\u{09BC}",
         .unlockLifetimeAccess: "\u{0986}\u{099C}\u{09C0}\u{09AC}\u{09A8} \u{0985}\u{09CD}\u{09AF}\u{09BE}\u{0995}\u{09CD}\u{09B8}\u{09C7}\u{09B8} \u{0986}\u{09A8}\u{09B2}\u{0995} \u{0995}\u{09B0}\u{09C1}\u{09A8}",
+        .perMonth: "/\u{09AE}\u{09BE}\u{09B8}",
+        .perYear: "/\u{09AC}\u{099B}\u{09B0}",
         .bestValue: "\u{09B8}\u{09C7}\u{09B0}\u{09BE} \u{09AE}\u{09C2}\u{09B2}\u{09CD}\u{09AF}",
         .yearlyPlan: "\u{09AC}\u{09BE}\u{09B0}\u{09CD}\u{09B7}\u{09BF}\u{0995}",
         .lifetimePlan: "\u{0986}\u{099C}\u{09C0}\u{09AC}\u{09A8}",
@@ -261,6 +265,7 @@ private let localizedStrings: [SupportedLanguage: [LocalizedStringKey: String]] 
         .yearlyPlan: "Anual",
         .lifetimePlan: "De por vida",
         .perMonth: "/mes",
+        .perYear: "/a\u{00F1}o",
         .freeTrial: "Prueba Gratis",
         .freeTrialDescription: "3 d\u{00ED}as gratis, luego",
         .startFreeTrial: "Iniciar Prueba Gratuita",
@@ -334,6 +339,7 @@ private let localizedStrings: [SupportedLanguage: [LocalizedStringKey: String]] 
         .yearlyPlan: "Annuel",
         .lifetimePlan: "\u{00C0} vie",
         .perMonth: "/mois",
+        .perYear: "/an",
         .freeTrial: "Essai Gratuit",
         .freeTrialDescription: "3 jours gratuits, puis",
         .startFreeTrial: "D\u{00E9}marrer l'essai gratuit",
@@ -407,6 +413,7 @@ private let localizedStrings: [SupportedLanguage: [LocalizedStringKey: String]] 
         .yearlyPlan: "J\u{00E4}hrlich",
         .lifetimePlan: "Lebenslang",
         .perMonth: "/Monat",
+        .perYear: "/Jahr",
         .freeTrial: "Kostenlos Testen",
         .freeTrialDescription: "3 Tage kostenlos, dann",
         .startFreeTrial: "Kostenlos Testen",
@@ -480,6 +487,7 @@ private let localizedStrings: [SupportedLanguage: [LocalizedStringKey: String]] 
         .yearlyPlan: "Anual",
         .lifetimePlan: "Vital\u{00ED}cio",
         .perMonth: "/m\u{00EA}s",
+        .perYear: "/ano",
         .freeTrial: "Teste Gr\u{00E1}tis",
         .freeTrialDescription: "3 dias gr\u{00E1}tis, depois",
         .startFreeTrial: "Iniciar Teste Gr\u{00E1}tis",
@@ -553,6 +561,7 @@ private let localizedStrings: [SupportedLanguage: [LocalizedStringKey: String]] 
         .yearlyPlan: "\u{0633}\u{0646}\u{0648}\u{064A}",
         .lifetimePlan: "\u{0645}\u{062F}\u{0649} \u{0627}\u{0644}\u{062D}\u{064A}\u{0627}\u{0629}",
         .perMonth: "/\u{0634}\u{0647}\u{0631}",
+        .perYear: "/\u{0633}\u{0646}\u{0629}",
         .freeTrial: "\u{062A}\u{062C}\u{0631}\u{0628}\u{0629} \u{0645}\u{062C}\u{0627}\u{0646}\u{064A}\u{0629}",
         .freeTrialDescription: "3 \u{0623}\u{064A}\u{0627}\u{0645} \u{0645}\u{062C}\u{0627}\u{0646}\u{0627}\u{064B}\u{060C} \u{062B}\u{0645}",
         .startFreeTrial: "\u{0627}\u{0628}\u{062F}\u{0623} \u{0627}\u{0644}\u{062A}\u{062C}\u{0631}\u{0628}\u{0629} \u{0627}\u{0644}\u{0645}\u{062C}\u{0627}\u{0646}\u{064A}\u{0629}",
@@ -626,6 +635,7 @@ private let localizedStrings: [SupportedLanguage: [LocalizedStringKey: String]] 
         .yearlyPlan: "\u{0935}\u{093E}\u{0930}\u{094D}\u{0937}\u{093F}\u{0915}",
         .lifetimePlan: "\u{0906}\u{091C}\u{0940}\u{0935}\u{0928}",
         .perMonth: "/\u{092E}\u{093E}\u{0939}",
+        .perYear: "/\u{0935}\u{0930}\u{094D}\u{0937}",
         .freeTrial: "\u{092E}\u{0941}\u{092B}\u{094D}\u{0924} \u{091F}\u{094D}\u{0930}\u{093E}\u{092F}\u{0932}",
         .freeTrialDescription: "3 \u{0926}\u{093F}\u{0928} \u{092E}\u{0941}\u{092B}\u{094D}\u{0924}, \u{092B}\u{093F}\u{0930}",
         .startFreeTrial: "\u{092E}\u{0941}\u{092B}\u{094D}\u{0924} \u{091F}\u{094D}\u{0930}\u{093E}\u{092F}\u{0932} \u{0936}\u{0941}\u{0930}\u{0942} \u{0915}\u{0930}\u{0947}\u{0902}",
@@ -699,6 +709,7 @@ private let localizedStrings: [SupportedLanguage: [LocalizedStringKey: String]] 
         .yearlyPlan: "\u{5E74}\u{5EA6}",
         .lifetimePlan: "\u{7EC8}\u{8EAB}",
         .perMonth: "/\u{6708}",
+        .perYear: "/\u{5E74}",
         .freeTrial: "\u{514D}\u{8D39}\u{8BD5}\u{7528}",
         .freeTrialDescription: "3\u{5929}\u{514D}\u{8D39}\u{FF0C}\u{7136}\u{540E}",
         .startFreeTrial: "\u{5F00}\u{59CB}\u{514D}\u{8D39}\u{8BD5}\u{7528}",
@@ -718,6 +729,8 @@ private let localizedStrings: [SupportedLanguage: [LocalizedStringKey: String]] 
         .skip: "\u{30B9}\u{30AD}\u{30C3}\u{30D7}",
         .getStarted: "\u{59CB}\u{3081}\u{308B}",
         .close: "\u{9589}\u{3058}\u{308B}",
+        .perMonth: "/\u{6708}",
+        .perYear: "/\u{5E74}",
         .unlockPremium: "\u{30D7}\u{30EC}\u{30DF}\u{30A2}\u{30E0}\u{3092}\u{89E3}\u{9664}",
         .paywallSubtitle: "\u{3059}\u{3079}\u{3066}\u{306E}\u{6A5F}\u{80FD}\u{306B}\u{7121}\u{5236}\u{9650}\u{30A2}\u{30AF}\u{30BB}\u{30B9}",
         .startFreeTrial: "\u{7121}\u{6599}\u{30C8}\u{30E9}\u{30A4}\u{30A2}\u{30EB}\u{3092}\u{958B}\u{59CB}",
@@ -735,6 +748,8 @@ private let localizedStrings: [SupportedLanguage: [LocalizedStringKey: String]] 
     ],
     .korean: [
         .appName: "Signer",
+        .perMonth: "/\u{C6D4}",
+        .perYear: "/\u{B144}",
         .continueButton: "\u{ACC4}\u{C18D}",
         .skip: "\u{AC74}\u{B108}\u{B6F0}\u{AE30}",
         .getStarted: "\u{C2DC}\u{C791}\u{D558}\u{AE30}",
@@ -756,6 +771,8 @@ private let localizedStrings: [SupportedLanguage: [LocalizedStringKey: String]] 
     ],
     .turkish: [
         .appName: "Signer",
+        .perMonth: "/ay",
+        .perYear: "/y\u{0131}l",
         .continueButton: "Devam",
         .skip: "Ge\u{00E7}",
         .getStarted: "Ba\u{015F}la",
@@ -777,6 +794,8 @@ private let localizedStrings: [SupportedLanguage: [LocalizedStringKey: String]] 
     ],
     .russian: [
         .appName: "Signer",
+        .perMonth: "/\u{043C}\u{0435}\u{0441}",
+        .perYear: "/\u{0433}\u{043E}\u{0434}",
         .continueButton: "\u{041F}\u{0440}\u{043E}\u{0434}\u{043E}\u{043B}\u{0436}\u{0438}\u{0442}\u{044C}",
         .skip: "\u{041F}\u{0440}\u{043E}\u{043F}\u{0443}\u{0441}\u{0442}\u{0438}\u{0442}\u{044C}",
         .getStarted: "\u{041D}\u{0430}\u{0447}\u{0430}\u{0442}\u{044C}",
@@ -798,6 +817,8 @@ private let localizedStrings: [SupportedLanguage: [LocalizedStringKey: String]] 
     ],
     .italian: [
         .appName: "Signer",
+        .perMonth: "/mese",
+        .perYear: "/anno",
         .continueButton: "Continua",
         .skip: "Salta",
         .getStarted: "Inizia",
@@ -819,6 +840,8 @@ private let localizedStrings: [SupportedLanguage: [LocalizedStringKey: String]] 
     ],
     .dutch: [
         .appName: "Signer",
+        .perMonth: "/maand",
+        .perYear: "/jaar",
         .continueButton: "Doorgaan",
         .skip: "Overslaan",
         .getStarted: "Beginnen",
@@ -840,6 +863,8 @@ private let localizedStrings: [SupportedLanguage: [LocalizedStringKey: String]] 
     ],
     .thai: [
         .appName: "Signer",
+        .perMonth: "/\u{0E40}\u{0E14}\u{0E37}\u{0E2D}\u{0E19}",
+        .perYear: "/\u{0E1B}\u{0E35}",
         .continueButton: "\u{0E14}\u{0E33}\u{0E40}\u{0E19}\u{0E34}\u{0E19}\u{0E01}\u{0E32}\u{0E23}",
         .skip: "\u{0E02}\u{0E49}\u{0E32}\u{0E21}",
         .getStarted: "\u{0E40}\u{0E23}\u{0E34}\u{0E48}\u{0E21}\u{0E15}\u{0E49}\u{0E19}",
@@ -861,6 +886,8 @@ private let localizedStrings: [SupportedLanguage: [LocalizedStringKey: String]] 
     ],
     .vietnamese: [
         .appName: "Signer",
+        .perMonth: "/th\u{00E1}ng",
+        .perYear: "/n\u{0103}m",
         .continueButton: "Ti\u{1EBF}p t\u{1EE5}c",
         .skip: "B\u{1ECF} qua",
         .getStarted: "B\u{1EAF}t \u{0111}\u{1EA7}u",
@@ -882,6 +909,8 @@ private let localizedStrings: [SupportedLanguage: [LocalizedStringKey: String]] 
     ],
     .indonesian: [
         .appName: "Signer",
+        .perMonth: "/bulan",
+        .perYear: "/tahun",
         .continueButton: "Lanjutkan",
         .skip: "Lewati",
         .getStarted: "Mulai",
@@ -903,6 +932,8 @@ private let localizedStrings: [SupportedLanguage: [LocalizedStringKey: String]] 
     ],
     .malay: [
         .appName: "Signer",
+        .perMonth: "/bulan",
+        .perYear: "/tahun",
         .continueButton: "Teruskan",
         .skip: "Langkau",
         .getStarted: "Mula",
@@ -924,6 +955,8 @@ private let localizedStrings: [SupportedLanguage: [LocalizedStringKey: String]] 
     ],
     .polish: [
         .appName: "Signer",
+        .perMonth: "/mies.",
+        .perYear: "/rok",
         .continueButton: "Kontynuuj",
         .skip: "Pomi\u{0144}",
         .getStarted: "Zacznij",

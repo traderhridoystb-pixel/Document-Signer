@@ -284,11 +284,11 @@ struct CustomPaywallView: View {
                     Text(monthlyStr)
                         .font(.system(size: isCompact ? 24 : 28, weight: .black, design: .rounded))
                         .foregroundColor(accentOrange)
-                    + Text("/monthly")
+                    + Text(localization.localized(.perMonth))
                         .font(.system(size: isCompact ? 11 : 12, weight: .bold))
                         .foregroundColor(accentOrange.opacity(0.8))
 
-                    Text("\(monthlyStr)/monthly \u{2022} \(yearlyPkg.storeProduct.localizedPriceString)/yearly")
+                    Text("\(monthlyStr)\(localization.localized(.perMonth)) \u{2022} \(yearlyPkg.storeProduct.localizedPriceString)\(localization.localized(.perYear))")
                         .font(.system(size: 9, weight: .medium))
                         .foregroundColor(.white.opacity(0.4))
                         .lineLimit(1)
