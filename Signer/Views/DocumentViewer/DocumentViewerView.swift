@@ -79,16 +79,34 @@ struct DocumentViewerView: View {
 
                 ToolbarItem(placement: .navigationBarTrailing) {
                     HStack(spacing: 12) {
-                        Button(action: { showingExportSheet = true }) {
-                            Image(systemName: "square.and.arrow.up")
-                                .font(.system(size: 16))
+                        Button(action: {
+                            requirePremiumForExport { showingExportSheet = true }
+                        }) {
+                            HStack(spacing: 4) {
+                                Image(systemName: "square.and.arrow.up")
+                                    .font(.system(size: 16))
+                                if !storeKit.isPremium {
+                                    Image(systemName: "crown.fill")
+                                        .font(.system(size: 10))
+                                        .foregroundColor(Color(hex: "F59E0B"))
+                                }
+                            }
                         }
 
-                        Button(action: saveDocument) {
-                            Text("Save")
-                                .font(SignerTypography.subheadline)
-                                .fontWeight(.semibold)
-                                .foregroundColor(SignerColors.primary)
+                        Button(action: {
+                            requirePremiumForExport { saveDocument() }
+                        }) {
+                            HStack(spacing: 4) {
+                                Text("Save")
+                                    .font(SignerTypography.subheadline)
+                                    .fontWeight(.semibold)
+                                    .foregroundColor(SignerColors.primary)
+                                if !storeKit.isPremium {
+                                    Image(systemName: "crown.fill")
+                                        .font(.system(size: 10))
+                                        .foregroundColor(Color(hex: "F59E0B"))
+                                }
+                            }
                         }
                     }
                 }
@@ -167,14 +185,10 @@ struct DocumentViewerView: View {
         ScrollView(.horizontal, showsIndicators: false) {
             HStack(spacing: 16) {
                 Menu {
-                    Button(action: {
-                        checkPremiumAndExecute { showingSignatureSheet = true }
-                    }) {
+                    Button(action: { showingSignatureSheet = true }) {
                         Label("Create New", systemImage: "plus")
                     }
-                    Button(action: {
-                        checkPremiumAndExecute { showingSavedSignatures = true }
-                    }) {
+                    Button(action: { showingSavedSignatures = true }) {
                         Label("Saved Signatures", systemImage: "folder")
                     }
                 } label: {
@@ -182,10 +196,8 @@ struct DocumentViewerView: View {
                 }
 
                 ToolButton(icon: "textformat.abc", label: "Initials", isSelected: selectedTool == .initials) {
-                    checkPremiumAndExecute {
-                        selectedTool = .initials
-                        showingSignatureSheet = true
-                    }
+                    selectedTool = .initials
+                    showingSignatureSheet = true
                 }
 
                 ToolButton(icon: "textformat", label: "Text", isSelected: selectedTool == .text) {
@@ -197,9 +209,7 @@ struct DocumentViewerView: View {
                 }
 
                 ToolButton(icon: "seal", label: "Stamp", isSelected: selectedTool == .stamp) {
-                    checkPremiumAndExecute {
-                        showingStampPicker = true
-                    }
+                    showingStampPicker = true
                 }
 
                 ToolButton(icon: "checkmark.square", label: "Check", isSelected: selectedTool == .checkbox) {
@@ -207,17 +217,13 @@ struct DocumentViewerView: View {
                 }
 
                 ToolButton(icon: "photo", label: "Image", isSelected: selectedTool == .image) {
-                    checkPremiumAndExecute {
-                        selectedTool = .image
-                        showingImagePicker = true
-                    }
+                    selectedTool = .image
+                    showingImagePicker = true
                 }
 
                 ToolButton(icon: "pencil.tip", label: "Draw", isSelected: selectedTool == .drawing) {
-                    checkPremiumAndExecute {
-                        selectedTool = .drawing
-                        showingDrawingCanvas = true
-                    }
+                    selectedTool = .drawing
+                    showingDrawingCanvas = true
                 }
             }
             .padding(.horizontal, 16)
@@ -231,8 +237,8 @@ struct DocumentViewerView: View {
     }
 
     // MARK: - Actions
-    private func checkPremiumAndExecute(_ action: () -> Void) {
-        if storeKit.isPremium || documentManager.canSignForFree {
+    private func requirePremiumForExport(_ action: () -> Void) {
+        if storeKit.isPremium {
             action()
         } else {
             showingPaywall = true
@@ -571,6 +577,7 @@ struct DrawingCanvasOverlay: View {
     @State private var currentPath: [CGPoint] = []
     @State private var strokeColor: Color = .black
     @State private var strokeWidth: CGFloat = 3.0
+    @State private var actualCanvasSize: CGSize = .zero
 
     var body: some View {
         ZStack {
@@ -617,6 +624,11 @@ struct DrawingCanvasOverlay: View {
                 .padding(.bottom, 8)
 
                 ZStack {
+                    GeometryReader { geo in
+                        Color.clear.onAppear { actualCanvasSize = geo.size }
+                            .onChange(of: geo.size) { _, newSize in actualCanvasSize = newSize }
+                    }
+
                     RoundedRectangle(cornerRadius: 12)
                         .fill(Color.white)
 
@@ -667,8 +679,8 @@ struct DrawingCanvasOverlay: View {
             UIColor.clear.setFill()
             ctx.fill(CGRect(origin: .zero, size: CGSize(width: 500, height: 300)))
 
-            let canvasWidth = UIScreen.main.bounds.width - 56
-            let canvasHeight = UIScreen.main.bounds.height * 0.4
+            let canvasWidth = actualCanvasSize.width > 0 ? actualCanvasSize.width : UIScreen.main.bounds.width - 56
+            let canvasHeight = actualCanvasSize.height > 0 ? actualCanvasSize.height : UIScreen.main.bounds.height * 0.5
             let scaleX = 500.0 / canvasWidth
             let scaleY = 300.0 / canvasHeight
 
