@@ -74,7 +74,11 @@ final class RevenueCatManager {
     // MARK: - SDK Configuration
     /// Call this once at app launch (e.g. in App.init or AppDelegate)
     static func configure() {
+        #if DEBUG
         Purchases.logLevel = .debug
+        #else
+        Purchases.logLevel = .error
+        #endif
 
         Purchases.configure(
             with: .builder(withAPIKey: RevenueCatConfig.apiKey)
