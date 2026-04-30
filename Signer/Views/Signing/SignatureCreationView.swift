@@ -17,7 +17,14 @@ struct SignatureCreationView: View {
         "Bradley Hand",
         "Marker Felt",
         "Noteworthy",
-        "Zapfino"
+        "Zapfino",
+        "Didot",
+        "Georgia",
+        "Baskerville",
+        "Copperplate",
+        "Palatino",
+        "American Typewriter",
+        "Courier New"
     ]
 
     var body: some View {
