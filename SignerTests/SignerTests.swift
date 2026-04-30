@@ -101,6 +101,14 @@ final class SignerTests: XCTestCase {
         XCTAssertEqual(viewModel.currentState, .splash)
     }
 
+    // MARK: - RevenueCat Config Tests
+    func testRevenueCatConfigValues() {
+        XCTAssertEqual(RevenueCatConfig.entitlementID, "Signer Pro")
+        XCTAssertEqual(RevenueCatConfig.yearlyProductID, "yearly")
+        XCTAssertEqual(RevenueCatConfig.lifetimeProductID, "lifetime")
+        XCTAssertFalse(RevenueCatConfig.apiKey.isEmpty)
+    }
+
     // MARK: - Localization Tests
     func testLocalizationManagerInstance() {
         let manager = LocalizationManager.shared

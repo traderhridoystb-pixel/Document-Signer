@@ -1,3 +1,5 @@
+import RevenueCat
+import RevenueCatUI
 import SwiftUI
 
 @main
@@ -6,6 +8,12 @@ struct SignerApp: App {
     @State private var localizationManager = LocalizationManager.shared
     @State private var storeKitManager = StoreKitManager.shared
     @State private var documentManager = DocumentManager.shared
+    @State private var revenueCatManager = RevenueCatManager.shared
+
+    init() {
+        // Configure RevenueCat SDK at launch
+        RevenueCatManager.configure()
+    }
 
     var body: some Scene {
         WindowGroup {
@@ -14,7 +22,13 @@ struct SignerApp: App {
                 .environment(localizationManager)
                 .environment(storeKitManager)
                 .environment(documentManager)
-                .preferredColorScheme(nil) // Support both light and dark mode
+                .environment(revenueCatManager)
+                .preferredColorScheme(nil)
+                .task {
+                    // Fetch customer info and offerings on launch
+                    await revenueCatManager.fetchCustomerInfo()
+                    await revenueCatManager.fetchOfferings()
+                }
         }
     }
 }
@@ -44,7 +58,7 @@ struct RootView: View {
                     ))
 
             case .paywall:
-                PaywallView(isFromOnboarding: true)
+                SignerPaywallView(isFromOnboarding: true)
                     .transition(.asymmetric(
                         insertion: .move(edge: .trailing).combined(with: .opacity),
                         removal: .move(edge: .leading).combined(with: .opacity)

@@ -54,7 +54,9 @@
 - **UI Framework**: SwiftUI
 - **Minimum iOS**: 17.0
 - **PDF Processing**: PDFKit
-- **In-App Purchases**: StoreKit 2
+- **In-App Purchases**: RevenueCat SDK (StoreKit 2 backend)
+- **Paywalls**: RevenueCat Paywalls (remote-configurable)
+- **Customer Center**: RevenueCat Customer Center (subscription management)
 - **Architecture**: MVVM with Observable
 
 ## Project Structure
@@ -79,7 +81,8 @@ Signer/
 ├── ViewModels/
 │   └── AppFlowViewModel.swift       # App navigation flow
 ├── Services/
-│   ├── StoreKitManager.swift        # In-app purchase management
+│   ├── RevenueCatManager.swift      # RevenueCat SDK integration
+│   ├── StoreKitManager.swift        # Legacy compatibility wrapper
 │   ├── DocumentManager.swift        # Document CRUD operations
 │   └── LocalizationManager.swift    # Multi-language support
 ├── Utilities/
@@ -104,9 +107,13 @@ Signer/
    - Select your development team in Signing & Capabilities
    - Set the bundle identifier
 
-3. **Configure StoreKit**
-   - The project includes a `Products.storekit` file for testing
-   - Configure your App Store Connect products for production
+3. **Configure RevenueCat**
+   - The SDK is pre-configured with a test API key in `RevenueCatManager.swift`
+   - Replace `RevenueCatConfig.apiKey` with your production API key
+   - Configure your products and entitlements in the [RevenueCat Dashboard](https://app.revenuecat.com)
+   - Set up the "Signer Pro" entitlement with your Yearly and Lifetime products
+   - Configure a Paywall template in the dashboard for remote paywall support
+   - The project includes a `Products.storekit` file for local testing
 
 4. **Build & Run**
    - Select a simulator or device

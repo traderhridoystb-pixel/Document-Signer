@@ -12,9 +12,19 @@ let package = Package(
             targets: ["Signer"]
         ),
     ],
+    dependencies: [
+        .package(
+            url: "https://github.com/RevenueCat/purchases-ios-spm.git",
+            from: "5.0.0"
+        ),
+    ],
     targets: [
         .target(
             name: "Signer",
+            dependencies: [
+                .product(name: "RevenueCat", package: "purchases-ios-spm"),
+                .product(name: "RevenueCatUI", package: "purchases-ios-spm"),
+            ],
             path: "Signer"
         ),
         .testTarget(

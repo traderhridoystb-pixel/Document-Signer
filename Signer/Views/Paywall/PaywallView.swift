@@ -1,16 +1,109 @@
+import RevenueCat
+import RevenueCatUI
 import SwiftUI
-import StoreKit
 
-struct PaywallView: View {
+// MARK: - Signer Paywall Screen
+/// Main paywall entry point used throughout the app.
+/// Attempts to display RevenueCat's remote-configured paywall first,
+/// falling back to a custom-built paywall when no remote paywall is configured.
+struct SignerPaywallView: View {
     @Environment(AppFlowViewModel.self) private var flowViewModel
-    @Environment(LocalizationManager.self) private var localization
-    @Environment(StoreKitManager.self) private var storeKit
     @Environment(\.dismiss) private var dismiss
 
     let isFromOnboarding: Bool
+
+    var body: some View {
+        RevenueCatPaywallContainer(
+            isFromOnboarding: isFromOnboarding,
+            onDismiss: {
+                if isFromOnboarding {
+                    flowViewModel.completePaywall()
+                } else {
+                    dismiss()
+                }
+            },
+            onPurchaseCompleted: {
+                HapticManager.notification(.success)
+                if isFromOnboarding {
+                    flowViewModel.completePaywall()
+                } else {
+                    dismiss()
+                }
+            }
+        )
+    }
+}
+
+// MARK: - RevenueCat Paywall Container
+/// Loads the current offering and decides whether to use RevenueCat's
+/// remote paywall template or the custom fallback paywall.
+struct RevenueCatPaywallContainer: View {
+    let isFromOnboarding: Bool
+    let onDismiss: () -> Void
+    let onPurchaseCompleted: () -> Void
+
+    @State private var offering: Offering?
+    @State private var isLoading = true
+    @State private var hasRemotePaywall = false
+
+    var body: some View {
+        Group {
+            if isLoading {
+                ZStack {
+                    Color(.systemBackground).ignoresSafeArea()
+                    ProgressView().scaleEffect(1.3)
+                }
+            } else if hasRemotePaywall, let offering {
+                // RevenueCat remote paywall (configured in the dashboard)
+                RevenueCatUI.PaywallView(offering: offering, displayCloseButton: true)
+                    .onPurchaseCompleted { _ in
+                        onPurchaseCompleted()
+                    }
+                    .onRestoreCompleted { _ in
+                        Task { @MainActor in
+                            await RevenueCatManager.shared.fetchCustomerInfo()
+                            if RevenueCatManager.shared.isPremium {
+                                onPurchaseCompleted()
+                            }
+                        }
+                    }
+            } else {
+                // Custom fallback paywall
+                CustomPaywallView(
+                    isFromOnboarding: isFromOnboarding,
+                    onDismiss: onDismiss,
+                    onPurchaseCompleted: onPurchaseCompleted
+                )
+            }
+        }
+        .task {
+            await loadOffering()
+        }
+    }
+
+    private func loadOffering() async {
+        do {
+            let offerings = try await Purchases.shared.offerings()
+            self.offering = offerings.current
+            self.hasRemotePaywall = offerings.current?.paywall != nil
+        } catch {
+            self.hasRemotePaywall = false
+        }
+        self.isLoading = false
+    }
+}
+
+// MARK: - Custom Paywall (Fallback)
+struct CustomPaywallView: View {
+    @Environment(LocalizationManager.self) private var localization
+
+    let isFromOnboarding: Bool
+    let onDismiss: () -> Void
+    let onPurchaseCompleted: () -> Void
+
     @State private var selectedPlan: PlanType = .yearly
-    @State private var isAnimated = false
     @State private var isPurchasing = false
+    @State private var revenueCat = RevenueCatManager.shared
 
     enum PlanType {
         case yearly
@@ -19,19 +112,14 @@ struct PaywallView: View {
 
     var body: some View {
         ZStack {
-            // Background
             ScrollView {
                 VStack(spacing: 0) {
-                    // Close / Skip button
+                    // Close button
                     HStack {
                         Spacer()
                         Button(action: {
                             HapticManager.impact(.light)
-                            if isFromOnboarding {
-                                flowViewModel.completePaywall()
-                            } else {
-                                dismiss()
-                            }
+                            onDismiss()
                         }) {
                             Image(systemName: "xmark")
                                 .font(.system(size: 14, weight: .bold))
@@ -44,45 +132,38 @@ struct PaywallView: View {
                     .padding(.horizontal, 20)
                     .padding(.top, 12)
 
-                    // Premium Header
                     premiumHeader
                         .fadeSlideIn(delay: 0.1)
 
-                    // Features list
                     premiumFeatures
                         .fadeSlideIn(delay: 0.2)
 
-                    // Plan selection
                     planSelection
                         .fadeSlideIn(delay: 0.3)
 
-                    // CTA Button
                     ctaButton
                         .fadeSlideIn(delay: 0.4)
 
-                    // Legal links
                     legalSection
                         .fadeSlideIn(delay: 0.5)
                 }
                 .padding(.bottom, 32)
             }
 
-            // Loading overlay
             if isPurchasing {
-                Color.black.opacity(0.4)
-                    .ignoresSafeArea()
-                ProgressView()
-                    .tint(.white)
-                    .scaleEffect(1.5)
+                Color.black.opacity(0.4).ignoresSafeArea()
+                ProgressView().tint(.white).scaleEffect(1.5)
             }
         }
         .background(Color(.systemBackground))
+        .task {
+            await revenueCat.fetchOfferings()
+        }
     }
 
     // MARK: - Premium Header
     private var premiumHeader: some View {
         VStack(spacing: 16) {
-            // Crown icon
             ZStack {
                 Circle()
                     .fill(
@@ -129,37 +210,35 @@ struct PaywallView: View {
     // MARK: - Plan Selection
     private var planSelection: some View {
         VStack(spacing: 12) {
-            // Yearly Plan
-            PlanCard(
-                isSelected: selectedPlan == .yearly,
-                badge: localization.localized(.freeTrial),
-                title: localization.localized(.yearlyPlan),
-                price: storeKit.yearlyProduct?.displayPrice ?? "$29.99",
-                subtitle: "\(localization.localized(.freeTrialDescription)) \(storeKit.yearlyProduct?.displayPrice ?? "$29.99")/yr",
-                perMonth: storeKit.yearlyPricePerMonth.isEmpty ? "$2.50" : storeKit.yearlyPricePerMonth,
-                action: {
-                    HapticManager.selection()
-                    withAnimation(.spring(response: 0.3)) {
-                        selectedPlan = .yearly
+            if let yearlyPkg = revenueCat.yearlyPackage {
+                PlanCard(
+                    isSelected: selectedPlan == .yearly,
+                    badge: localization.localized(.freeTrial),
+                    title: localization.localized(.yearlyPlan),
+                    price: yearlyPkg.storeProduct.localizedPriceString,
+                    subtitle: "\(localization.localized(.freeTrialDescription)) \(yearlyPkg.storeProduct.localizedPriceString)/yr",
+                    perMonth: revenueCat.yearlyPricePerMonth,
+                    action: {
+                        HapticManager.selection()
+                        withAnimation(.spring(response: 0.3)) { selectedPlan = .yearly }
                     }
-                }
-            )
+                )
+            }
 
-            // Lifetime Plan
-            PlanCard(
-                isSelected: selectedPlan == .lifetime,
-                badge: localization.localized(.bestValue),
-                title: localization.localized(.lifetimePlan),
-                price: storeKit.lifetimeProduct?.displayPrice ?? "$49.99",
-                subtitle: localization.localized(.oneTimePurchase),
-                perMonth: nil,
-                action: {
-                    HapticManager.selection()
-                    withAnimation(.spring(response: 0.3)) {
-                        selectedPlan = .lifetime
+            if let lifetimePkg = revenueCat.lifetimePackage {
+                PlanCard(
+                    isSelected: selectedPlan == .lifetime,
+                    badge: localization.localized(.bestValue),
+                    title: localization.localized(.lifetimePlan),
+                    price: lifetimePkg.storeProduct.localizedPriceString,
+                    subtitle: localization.localized(.oneTimePurchase),
+                    perMonth: nil,
+                    action: {
+                        HapticManager.selection()
+                        withAnimation(.spring(response: 0.3)) { selectedPlan = .lifetime }
                     }
-                }
-            )
+                )
+            }
         }
         .padding(.horizontal, 20)
         .padding(.bottom, 20)
@@ -207,18 +286,10 @@ struct PaywallView: View {
     // MARK: - Legal Section
     private var legalSection: some View {
         VStack(spacing: 12) {
-            // Restore Purchases
             Button(action: {
                 Task {
-                    await storeKit.restorePurchases()
-                    if storeKit.isPremium {
-                        HapticManager.notification(.success)
-                        if isFromOnboarding {
-                            flowViewModel.completePaywall()
-                        } else {
-                            dismiss()
-                        }
-                    }
+                    let restored = await revenueCat.restorePurchases()
+                    if restored { onPurchaseCompleted() }
                 }
             }) {
                 Text(localization.localized(.restorePurchase))
@@ -226,15 +297,13 @@ struct PaywallView: View {
                     .foregroundColor(SignerColors.primary)
             }
 
-            // Terms & Privacy
             HStack(spacing: 16) {
                 Link(localization.localized(.termsOfUse),
                      destination: URL(string: AppConstants.termsURL)!)
                     .font(SignerTypography.caption1)
                     .foregroundColor(SignerColors.textTertiary)
 
-                Text("\u{2022}")
-                    .foregroundColor(SignerColors.textTertiary)
+                Text("\u{2022}").foregroundColor(SignerColors.textTertiary)
 
                 Link(localization.localized(.privacyPolicy),
                      destination: URL(string: AppConstants.privacyPolicyURL)!)
@@ -256,28 +325,19 @@ struct PaywallView: View {
         isPurchasing = true
         defer { isPurchasing = false }
 
-        let product: Product?
+        let package: Package?
         switch selectedPlan {
         case .yearly:
-            product = storeKit.yearlyProduct
+            package = revenueCat.yearlyPackage
         case .lifetime:
-            product = storeKit.lifetimeProduct
+            package = revenueCat.lifetimePackage
         }
 
-        guard let product else { return }
+        guard let package else { return }
 
-        do {
-            let transaction = try await storeKit.purchase(product)
-            if transaction != nil {
-                HapticManager.notification(.success)
-                if isFromOnboarding {
-                    flowViewModel.completePaywall()
-                } else {
-                    dismiss()
-                }
-            }
-        } catch {
-            HapticManager.notification(.error)
+        let success = await revenueCat.purchase(package: package)
+        if success {
+            onPurchaseCompleted()
         }
     }
 }
@@ -323,7 +383,6 @@ struct PlanCard: View {
     var body: some View {
         Button(action: action) {
             VStack(spacing: 0) {
-                // Badge
                 if !badge.isEmpty {
                     Text(badge)
                         .font(SignerTypography.caption1)
@@ -366,7 +425,6 @@ struct PlanCard: View {
                         }
                     }
 
-                    // Selection indicator
                     Image(systemName: isSelected ? "checkmark.circle.fill" : "circle")
                         .font(.system(size: 24))
                         .foregroundColor(isSelected ? SignerColors.primary : SignerColors.neutral300)
@@ -387,5 +445,16 @@ struct PlanCard: View {
             )
         }
         .buttonStyle(.plain)
+    }
+}
+
+// MARK: - Conditional Paywall Modifier
+/// Use on any view to automatically show the paywall when the user is not premium.
+/// Example: `.presentSignerPaywallIfNeeded()`
+extension View {
+    func presentSignerPaywallIfNeeded() -> some View {
+        self.presentPaywallIfNeeded(
+            requiredEntitlementIdentifier: RevenueCatConfig.entitlementID
+        )
     }
 }

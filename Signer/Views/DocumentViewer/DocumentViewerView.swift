@@ -86,7 +86,7 @@ struct DocumentViewerView: View {
                 .presentationDetents([.medium])
             }
             .sheet(isPresented: $showingPaywall) {
-                PaywallView(isFromOnboarding: false)
+                SignerPaywallView(isFromOnboarding: false)
             }
             .alert("Add Text", isPresented: $showingTextInput) {
                 TextField("Enter text...", text: $textInput)

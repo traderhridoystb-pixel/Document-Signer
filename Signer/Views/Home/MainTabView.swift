@@ -26,7 +26,7 @@ struct MainTabView: View {
         }
         .tint(SignerColors.primary)
         .sheet(isPresented: $showingPaywall) {
-            PaywallView(isFromOnboarding: false)
+            SignerPaywallView(isFromOnboarding: false)
         }
     }
 }
