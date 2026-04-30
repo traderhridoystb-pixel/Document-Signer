@@ -167,10 +167,14 @@ struct DocumentViewerView: View {
         ScrollView(.horizontal, showsIndicators: false) {
             HStack(spacing: 16) {
                 Menu {
-                    Button(action: { showingSignatureSheet = true }) {
+                    Button(action: {
+                        checkPremiumAndExecute { showingSignatureSheet = true }
+                    }) {
                         Label("Create New", systemImage: "plus")
                     }
-                    Button(action: { showingSavedSignatures = true }) {
+                    Button(action: {
+                        checkPremiumAndExecute { showingSavedSignatures = true }
+                    }) {
                         Label("Saved Signatures", systemImage: "folder")
                     }
                 } label: {
@@ -383,6 +387,7 @@ struct AnnotationView: View {
     @State private var size: CGSize
     @State private var isSelected = false
     @State private var currentScale: CGFloat = 1.0
+    @State private var dragStartSize: CGSize?
 
     init(annotation: DocumentAnnotation, onDelete: @escaping () -> Void, onMove: @escaping (CGPoint) -> Void, onResize: @escaping (CGSize) -> Void) {
         self.annotation = annotation
@@ -458,11 +463,16 @@ struct AnnotationView: View {
                     .gesture(
                         DragGesture()
                             .onChanged { value in
-                                let newWidth = max(50, size.width + value.translation.width)
-                                let newHeight = max(30, size.height + value.translation.height)
+                                if dragStartSize == nil {
+                                    dragStartSize = size
+                                }
+                                let startSize = dragStartSize ?? size
+                                let newWidth = max(50, startSize.width + value.translation.width)
+                                let newHeight = max(30, startSize.height + value.translation.height)
                                 size = CGSize(width: newWidth, height: newHeight)
                             }
                             .onEnded { _ in
+                                dragStartSize = nil
                                 onResize(size)
                             }
                     )
