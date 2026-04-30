@@ -54,8 +54,7 @@ struct RevenueCatPaywallContainer: View {
                     ProgressView().scaleEffect(1.3)
                 }
             } else if hasRemotePaywall, let offering {
-                // RevenueCat remote paywall (configured in the dashboard)
-                RevenueCatUI.PaywallView(offering: offering, displayCloseButton: true)
+                RevenueCatUI.PaywallView(offering: offering, displayCloseButton: false)
                     .onPurchaseCompleted { _ in
                         onPurchaseCompleted()
                     }
@@ -66,6 +65,18 @@ struct RevenueCatPaywallContainer: View {
                                 onPurchaseCompleted()
                             }
                         }
+                    }
+                    .overlay(alignment: .topTrailing) {
+                        Button(action: { onDismiss() }) {
+                            Image(systemName: "xmark")
+                                .font(.system(size: 14, weight: .bold))
+                                .foregroundColor(SignerColors.textSecondary)
+                                .frame(width: 32, height: 32)
+                                .background(Color(.systemGray5))
+                                .clipShape(Circle())
+                        }
+                        .padding(.trailing, 20)
+                        .padding(.top, 12)
                     }
             } else {
                 // Custom fallback paywall
