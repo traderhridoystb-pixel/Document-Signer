@@ -140,7 +140,7 @@ struct SignatureCreationView: View {
 
                 HStack(spacing: 16) {
                     Button(action: {
-                        scannedImage = nil
+                        self.scannedImage = nil
                     }) {
                         HStack(spacing: 6) {
                             Image(systemName: "arrow.counterclockwise")
