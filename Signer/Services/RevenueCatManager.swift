@@ -1,5 +1,6 @@
 import Foundation
 import RevenueCat
+import StoreKit
 import SwiftUI
 
 // MARK: - RevenueCat Configuration
@@ -74,11 +75,15 @@ final class RevenueCatManager {
     // MARK: - SDK Configuration
     /// Call this once at app launch (e.g. in App.init or AppDelegate)
     static func configure() {
+        #if DEBUG
         Purchases.logLevel = .debug
+        #else
+        Purchases.logLevel = .error
+        #endif
 
         Purchases.configure(
             with: .builder(withAPIKey: RevenueCatConfig.apiKey)
-                .with(usesStoreKit2IfAvailable: true)
+                .with(storeKitVersion: .storeKit2)
                 .build()
         )
 
