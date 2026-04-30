@@ -1,0 +1,601 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		0505DF56EEFF449B9DCCCC04 /* SignerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F0424BA44E7447091B4ACA7 /* SignerApp.swift */; };
+		35A69CD21FDC4A4B94252851 /* Document.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2EB71F44DA14B4DBE0E5760 /* Document.swift */; };
+		720D1DB627474D22B316F203 /* Signature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AD7F50318704F53B2382188 /* Signature.swift */; };
+		797D13D7DFA74EB38AAEDC8A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AA5B6E6941CC4E90854F9DD2 /* Assets.xcassets */; };
+		3B7F584830994AF59B9221A3 /* Products.storekit in Resources */ = {isa = PBXBuildFile; fileRef = AB553FDB4C89415C8EC2E47C /* Products.storekit */; };
+		C481BAF0BA754B3F91FB32C8 /* DocumentManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0CA8380BA0B4E8D8085FA63 /* DocumentManager.swift */; };
+		14B8BF00E57540D78A907307 /* LocalizationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E859215BB33F4C23940D5AF5 /* LocalizationManager.swift */; };
+		D9E3AB69F4CE4792BF4695C0 /* RevenueCatManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3284F86ED3D845BAA4E7DDFE /* RevenueCatManager.swift */; };
+		7CD5094B10DC4D629D614A44 /* StoreKitManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C642794F65DF44AB8F137966 /* StoreKitManager.swift */; };
+		0470BA2900EB4207BDBF05AC /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = E241665842294DCA89D11885 /* Constants.swift */; };
+		25EA8F79954F419687651F78 /* ViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F5B49A06F924EBAA90582C7 /* ViewExtensions.swift */; };
+		875BC5048161480D9787593B /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4468B5CAF314589AEFE7614 /* Theme.swift */; };
+		EF86841888554B47B5ED64D9 /* AppFlowViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21603040F18D49B18032E17B /* AppFlowViewModel.swift */; };
+		A40E3A75ACFE495C9A3C5E16 /* PremiumBadge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F9CB7CBEA25431DA59C2168 /* PremiumBadge.swift */; };
+		81C72A8B794C4FD5B9261885 /* DocumentViewerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 608E7E94F6724FF8A66B0989 /* DocumentViewerView.swift */; };
+		2484A8D01334410790537F88 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 602A7FF25CFB4B44B68E9341 /* HomeView.swift */; };
+		FEB3EEC7B40449C3AAC2675F /* MainTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D4C5D24F89447428C42AD72 /* MainTabView.swift */; };
+		DD5DD24DBFE440AFB2F3A9E1 /* LanguageSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046DDF5595BA47F8819DC451 /* LanguageSelectionView.swift */; };
+		1621CCE6BD564580A89E1807 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BEBE29E22AC432BAB6FFB3A /* OnboardingView.swift */; };
+		9DF935B0025A4928AFC9A077 /* PaywallView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1797C817928744F693C1DA55 /* PaywallView.swift */; };
+		5ED0AE09276145A5834D5EBF /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09BA5366F8BC4F38BBC350C3 /* SettingsView.swift */; };
+		6D5CEDA8F9EF4F5898DC6D54 /* SignatureCreationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8BC0F3BEA194893BF9101C5 /* SignatureCreationView.swift */; };
+		ACD19889181A4DC19519A69A /* SignatureManagerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14251296EF77410EA45A6F14 /* SignatureManagerView.swift */; };
+		96D95F2BEF0C406CBB825EC5 /* StampPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09719E3373B44CD29E5A9CB8 /* StampPickerView.swift */; };
+		E2F718F0877541CAB0F3182F /* SplashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39BA96856FB14466A3525FFB /* SplashView.swift */; };
+		7C502612CE594D138FE8455F /* RevenueCat in Frameworks */ = {isa = PBXBuildFile; productRef = 00AC9428155D42B3BB1F7706 /* RevenueCat */; };
+		C771D97016A44F91804D0A98 /* RevenueCatUI in Frameworks */ = {isa = PBXBuildFile; productRef = 6A6DCBDA83754F59AD6009B7 /* RevenueCatUI */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		5786A44118634588B96ED91A /* Signer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Signer.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		7F0424BA44E7447091B4ACA7 /* SignerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignerApp.swift; sourceTree = "<group>"; };
+		F2EB71F44DA14B4DBE0E5760 /* Document.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Document.swift; sourceTree = "<group>"; };
+		8AD7F50318704F53B2382188 /* Signature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Signature.swift; sourceTree = "<group>"; };
+		AA5B6E6941CC4E90854F9DD2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		AB553FDB4C89415C8EC2E47C /* Products.storekit */ = {isa = PBXFileReference; lastKnownFileType = text; path = Products.storekit; sourceTree = "<group>"; };
+		F0CA8380BA0B4E8D8085FA63 /* DocumentManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentManager.swift; sourceTree = "<group>"; };
+		E859215BB33F4C23940D5AF5 /* LocalizationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizationManager.swift; sourceTree = "<group>"; };
+		3284F86ED3D845BAA4E7DDFE /* RevenueCatManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RevenueCatManager.swift; sourceTree = "<group>"; };
+		C642794F65DF44AB8F137966 /* StoreKitManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreKitManager.swift; sourceTree = "<group>"; };
+		E241665842294DCA89D11885 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		2F5B49A06F924EBAA90582C7 /* ViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewExtensions.swift; sourceTree = "<group>"; };
+		F4468B5CAF314589AEFE7614 /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
+		21603040F18D49B18032E17B /* AppFlowViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppFlowViewModel.swift; sourceTree = "<group>"; };
+		3F9CB7CBEA25431DA59C2168 /* PremiumBadge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PremiumBadge.swift; sourceTree = "<group>"; };
+		608E7E94F6724FF8A66B0989 /* DocumentViewerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentViewerView.swift; sourceTree = "<group>"; };
+		602A7FF25CFB4B44B68E9341 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		8D4C5D24F89447428C42AD72 /* MainTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabView.swift; sourceTree = "<group>"; };
+		046DDF5595BA47F8819DC451 /* LanguageSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageSelectionView.swift; sourceTree = "<group>"; };
+		0BEBE29E22AC432BAB6FFB3A /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
+		1797C817928744F693C1DA55 /* PaywallView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaywallView.swift; sourceTree = "<group>"; };
+		09BA5366F8BC4F38BBC350C3 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		A8BC0F3BEA194893BF9101C5 /* SignatureCreationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignatureCreationView.swift; sourceTree = "<group>"; };
+		14251296EF77410EA45A6F14 /* SignatureManagerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignatureManagerView.swift; sourceTree = "<group>"; };
+		09719E3373B44CD29E5A9CB8 /* StampPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StampPickerView.swift; sourceTree = "<group>"; };
+		39BA96856FB14466A3525FFB /* SplashView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashView.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		72554C8B245141A4AA303DB2 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7C502612CE594D138FE8455F /* RevenueCat in Frameworks */,
+				C771D97016A44F91804D0A98 /* RevenueCatUI in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		E761CB77E1504268AAF4E695 = {
+			isa = PBXGroup;
+			children = (
+				14986C94BCC94D8C868BDDAB /* Signer */,
+				94F478C301DF4DDC8C725F3A /* Products */,
+				04C0626C19254B0EB7E7E7E3 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		94F478C301DF4DDC8C725F3A /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				5786A44118634588B96ED91A /* Signer.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		04C0626C19254B0EB7E7E7E3 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		14986C94BCC94D8C868BDDAB /* Signer */ = {
+			isa = PBXGroup;
+			children = (
+				28F33B634ED74841B8C2EF57 /* App */,
+				E269BFD3BCCA4BD497233DDC /* Models */,
+				D02BE347324F4A36B03534CB /* Resources */,
+				73B07D26CDC044D3ADF85CB0 /* Services */,
+				A59922D2593F4DF5A25EBDCC /* Utilities */,
+				DFF85739102B4824BA2130FE /* ViewModels */,
+				B96C0BD3FE7A46E4A45006D4 /* Views */,
+			);
+			path = Signer;
+			sourceTree = "<group>";
+		};
+		28F33B634ED74841B8C2EF57 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				7F0424BA44E7447091B4ACA7 /* SignerApp.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		E269BFD3BCCA4BD497233DDC /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				F2EB71F44DA14B4DBE0E5760 /* Document.swift */,
+				8AD7F50318704F53B2382188 /* Signature.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		D02BE347324F4A36B03534CB /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				AA5B6E6941CC4E90854F9DD2 /* Assets.xcassets */,
+				AB553FDB4C89415C8EC2E47C /* Products.storekit */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		73B07D26CDC044D3ADF85CB0 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				F0CA8380BA0B4E8D8085FA63 /* DocumentManager.swift */,
+				E859215BB33F4C23940D5AF5 /* LocalizationManager.swift */,
+				3284F86ED3D845BAA4E7DDFE /* RevenueCatManager.swift */,
+				C642794F65DF44AB8F137966 /* StoreKitManager.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		A59922D2593F4DF5A25EBDCC /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				E241665842294DCA89D11885 /* Constants.swift */,
+				F4468B5CAF314589AEFE7614 /* Theme.swift */,
+				157FCE202B6549258C49F542 /* Extensions */,
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
+		157FCE202B6549258C49F542 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				2F5B49A06F924EBAA90582C7 /* ViewExtensions.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		DFF85739102B4824BA2130FE /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				21603040F18D49B18032E17B /* AppFlowViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		B96C0BD3FE7A46E4A45006D4 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				87C6EF5E2A7640F9834EE5CB /* Components */,
+				657EF0842964408DA3F8C68D /* DocumentViewer */,
+				92DA9F84888A46BDB6DD19C9 /* Home */,
+				96C2B133E0B740EAA3AFE3E7 /* Language */,
+				FDB49ED8F4AC4692A6C4F973 /* Onboarding */,
+				4403E68B98954E7C884F71AD /* Paywall */,
+				555AEA6F560E4876B4FA49BC /* Settings */,
+				354BBE2C70CC4A2781177955 /* Signing */,
+				C74DF9251BED40BFBC04EED3 /* Splash */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		87C6EF5E2A7640F9834EE5CB /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				3F9CB7CBEA25431DA59C2168 /* PremiumBadge.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		657EF0842964408DA3F8C68D /* DocumentViewer */ = {
+			isa = PBXGroup;
+			children = (
+				608E7E94F6724FF8A66B0989 /* DocumentViewerView.swift */,
+			);
+			path = DocumentViewer;
+			sourceTree = "<group>";
+		};
+		92DA9F84888A46BDB6DD19C9 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				602A7FF25CFB4B44B68E9341 /* HomeView.swift */,
+				8D4C5D24F89447428C42AD72 /* MainTabView.swift */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		96C2B133E0B740EAA3AFE3E7 /* Language */ = {
+			isa = PBXGroup;
+			children = (
+				046DDF5595BA47F8819DC451 /* LanguageSelectionView.swift */,
+			);
+			path = Language;
+			sourceTree = "<group>";
+		};
+		FDB49ED8F4AC4692A6C4F973 /* Onboarding */ = {
+			isa = PBXGroup;
+			children = (
+				0BEBE29E22AC432BAB6FFB3A /* OnboardingView.swift */,
+			);
+			path = Onboarding;
+			sourceTree = "<group>";
+		};
+		4403E68B98954E7C884F71AD /* Paywall */ = {
+			isa = PBXGroup;
+			children = (
+				1797C817928744F693C1DA55 /* PaywallView.swift */,
+			);
+			path = Paywall;
+			sourceTree = "<group>";
+		};
+		555AEA6F560E4876B4FA49BC /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				09BA5366F8BC4F38BBC350C3 /* SettingsView.swift */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
+		354BBE2C70CC4A2781177955 /* Signing */ = {
+			isa = PBXGroup;
+			children = (
+				A8BC0F3BEA194893BF9101C5 /* SignatureCreationView.swift */,
+				14251296EF77410EA45A6F14 /* SignatureManagerView.swift */,
+				09719E3373B44CD29E5A9CB8 /* StampPickerView.swift */,
+			);
+			path = Signing;
+			sourceTree = "<group>";
+		};
+		C74DF9251BED40BFBC04EED3 /* Splash */ = {
+			isa = PBXGroup;
+			children = (
+				39BA96856FB14466A3525FFB /* SplashView.swift */,
+			);
+			path = Splash;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		8B60F5FF67044930BC4680C9 /* Signer */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8C153C135F28496A95506FDC /* Build configuration list for PBXNativeTarget "Signer" */;
+			buildPhases = (
+				19B243C3BEE74701B5177148 /* Sources */,
+				72554C8B245141A4AA303DB2 /* Frameworks */,
+				73D4931CEAB14E42802D8DBA /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Signer;
+			packageProductDependencies = (
+				00AC9428155D42B3BB1F7706 /* RevenueCat */,
+				6A6DCBDA83754F59AD6009B7 /* RevenueCatUI */,
+			);
+			productName = Signer;
+			productReference = 5786A44118634588B96ED91A /* Signer.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		C44B55FD387C437EA35CD6DE /* Project object */ = {
+			isa = PBXProject;
+			buildConfigurationList = 8A0FD453B6784BEE8A838459 /* Build configuration list for PBXProject "Signer" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = E761CB77E1504268AAF4E695;
+			packageReferences = (
+				443ED806F9C044E2AF2E3D24 /* XCRemoteSwiftPackageReference "purchases-ios-spm" */,
+			);
+			productRefGroup = 94F478C301DF4DDC8C725F3A /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				8B60F5FF67044930BC4680C9 /* Signer */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		73D4931CEAB14E42802D8DBA /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				797D13D7DFA74EB38AAEDC8A /* Assets.xcassets in Resources */,
+				3B7F584830994AF59B9221A3 /* Products.storekit in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		19B243C3BEE74701B5177148 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0505DF56EEFF449B9DCCCC04 /* SignerApp.swift in Sources */,
+				35A69CD21FDC4A4B94252851 /* Document.swift in Sources */,
+				720D1DB627474D22B316F203 /* Signature.swift in Sources */,
+				C481BAF0BA754B3F91FB32C8 /* DocumentManager.swift in Sources */,
+				14B8BF00E57540D78A907307 /* LocalizationManager.swift in Sources */,
+				D9E3AB69F4CE4792BF4695C0 /* RevenueCatManager.swift in Sources */,
+				7CD5094B10DC4D629D614A44 /* StoreKitManager.swift in Sources */,
+				0470BA2900EB4207BDBF05AC /* Constants.swift in Sources */,
+				25EA8F79954F419687651F78 /* ViewExtensions.swift in Sources */,
+				875BC5048161480D9787593B /* Theme.swift in Sources */,
+				EF86841888554B47B5ED64D9 /* AppFlowViewModel.swift in Sources */,
+				A40E3A75ACFE495C9A3C5E16 /* PremiumBadge.swift in Sources */,
+				81C72A8B794C4FD5B9261885 /* DocumentViewerView.swift in Sources */,
+				2484A8D01334410790537F88 /* HomeView.swift in Sources */,
+				FEB3EEC7B40449C3AAC2675F /* MainTabView.swift in Sources */,
+				DD5DD24DBFE440AFB2F3A9E1 /* LanguageSelectionView.swift in Sources */,
+				1621CCE6BD564580A89E1807 /* OnboardingView.swift in Sources */,
+				9DF935B0025A4928AFC9A077 /* PaywallView.swift in Sources */,
+				5ED0AE09276145A5834D5EBF /* SettingsView.swift in Sources */,
+				6D5CEDA8F9EF4F5898DC6D54 /* SignatureCreationView.swift in Sources */,
+				ACD19889181A4DC19519A69A /* SignatureManagerView.swift in Sources */,
+				96D95F2BEF0C406CBB825EC5 /* StampPickerView.swift in Sources */,
+				E2F718F0877541CAB0F3182F /* SplashView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		23692D94058B4500B976E9F6 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSTTAGS_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) DEBUG";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		E446D113D94B47C2B0134A0C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSTTAGS_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		A9542551C8A34FF9B82A115A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "";
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = Signer;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.business";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.signer.app;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		70664183AE344BDCBCBE64F3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "";
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = Signer;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.business";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.signer.app;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		8A0FD453B6784BEE8A838459 /* Build configuration list for PBXProject "Signer" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				23692D94058B4500B976E9F6 /* Debug */,
+				E446D113D94B47C2B0134A0C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8C153C135F28496A95506FDC /* Build configuration list for PBXNativeTarget "Signer" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A9542551C8A34FF9B82A115A /* Debug */,
+				70664183AE344BDCBCBE64F3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		443ED806F9C044E2AF2E3D24 /* XCRemoteSwiftPackageReference "purchases-ios-spm" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/RevenueCat/purchases-ios-spm.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		00AC9428155D42B3BB1F7706 /* RevenueCat */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 443ED806F9C044E2AF2E3D24 /* XCRemoteSwiftPackageReference "purchases-ios-spm" */;
+			productName = RevenueCat;
+		};
+		6A6DCBDA83754F59AD6009B7 /* RevenueCatUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 443ED806F9C044E2AF2E3D24 /* XCRemoteSwiftPackageReference "purchases-ios-spm" */;
+			productName = RevenueCatUI;
+		};
+/* End XCSwiftPackageProductDependency section */
+
+	};
+	rootObject = C44B55FD387C437EA35CD6DE /* Project object */;
+}
